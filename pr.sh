@@ -86,7 +86,30 @@ echo "----------------------------------------"
 echo "Attempting to push all the work into your repository..."
 echo "----------------------------------------"
 
+if [ ! -d .git ]; then
+        echo "This folder is not a Git repository!"
+        echo "Run 'Create Repository' option first."
+        return
+    fi
 
+
+
+
+
+read -p "Enter the message for this commit: " commit
+if [ -z "$commit" ]; then
+        commit="Updated project work"
+    fi
+
+
+
+
+git status
+git add .
+git commit -m "$commit"
+
+echo "Pushing to GitHub..."
+git push origin main
 
 
 
@@ -97,6 +120,8 @@ echo "1. Login into the github"
 echo "2. Check the status of your github Account"
 echo "3. Create a repository"
 echo "4. Add all your work on your github Account"
+echo "5. Add your work in another repository"
+echo "6. Check all the existing repositories"
 
 
 read -p "Enter the choice: " choice
